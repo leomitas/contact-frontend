@@ -15,7 +15,7 @@ interface ClientProviderData  {
   setClient: React.Dispatch<React.SetStateAction<iClient | null>>
   submitLogin: (data: LoginData) => void
   submitRegister: (data: RegisterData) => void
-  checkEmail(email: string): Promise<void>
+  // checkEmail(email: string): Promise<void>
   isLoading: boolean
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
   getProfile(): Promise<void>
@@ -26,7 +26,7 @@ export const ClientContext = createContext<ClientProviderData>({} as ClientProvi
 export const ClientProvider = ({ children }: Props) => {
     const navigate = useNavigate()
     const [client, setClient] = useState<iClient | null>(null)
-    const [verifiedEmail, setVerifiedEmail] = useState<boolean>(false)
+    // const [verifiedEmail, setVerifiedEmail] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect(() => {
@@ -71,14 +71,14 @@ export const ClientProvider = ({ children }: Props) => {
       }
     }
 
-    async function checkEmail(email: string) {
-      try {
-        const response = await api.get(`/clients/email`)
+    // async function checkEmail(email: string) {
+    //   try {
+    //     const response = await api.get(`/clients/email`)
 
-      } catch (error) {
-        console.error(error)
-      }
-    }
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // }
 
     return (
       <ClientContext.Provider value={{
@@ -86,7 +86,7 @@ export const ClientProvider = ({ children }: Props) => {
         setClient,
         submitLogin,
         submitRegister,
-        checkEmail,
+        // checkEmail,
         isLoading, 
         setIsLoading,
         getProfile

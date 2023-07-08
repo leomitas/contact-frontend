@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useState } from "react"
 import { iContact, iEditContact } from "./types"
 import { api } from "../../services/api"
 import jwtDecode from "jwt-decode"
@@ -29,7 +29,7 @@ export const ContactContext = createContext<ContactProviderData>({} as ContactPr
 
 export const ContactProvider = ({ children }: Props) => {
     const [contacts, setContacts] = useState<iContact[] | null>(null)
-    const [contact, setContact] = useState<iContact | null>(null)
+    // const [contact, setContact] = useState<iContact | null>(null)
     const [showModalEditContact, setShowModalEditContact] = useState<boolean>(false)
     const [showModalCreateContact, setShowModalCreateContact] = useState<boolean>(false)
     const [showModalDeleteContact, setShowModalDeleteContact] = useState<boolean>(false)
@@ -50,7 +50,7 @@ export const ContactProvider = ({ children }: Props) => {
       const token = localStorage.getItem('token')
       try {
         const response = await api.get(`/contacts/${idContact}`, {headers: {Authorization: `Bearer ${token}`}})
-        setContact(response.data)
+        // setContact(response.data)
         console.log(response.data)
       } catch (error) {
         console.error(error)
